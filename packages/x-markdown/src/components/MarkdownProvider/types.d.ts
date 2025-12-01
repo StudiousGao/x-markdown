@@ -24,8 +24,6 @@ export interface MarkdownContext {
   codeXSlot?: Record<string, any>;
   // 自定义代码块属性
   codeXProps?: Record<string, any>;
-  // 自定义代码高亮主题
-  codeHighlightTheme?: any;
   // 自定义属性对象
   customAttrs?: CustomAttrs;
   // remark 插件列表
@@ -40,12 +38,6 @@ export interface MarkdownContext {
   sanitize?: boolean;
   // 清洗选项
   sanitizeOptions?: SanitizeOptions;
-  // Mermaid 配置对象
-  mermaidConfig?: Record<string, any>;
-  // 默认主题模式
-  defaultThemeMode?: 'light' | 'dark';
-  // 是否是暗黑模式(代码高亮块)
-  isDarkMode?: boolean;
   // 是否显示查看代码按钮
   needViewCodeBtn?: boolean;
   // 是否是安全模式预览html

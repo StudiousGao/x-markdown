@@ -9,12 +9,11 @@ import type { CodeLineProps } from './types';
 
 const props = withDefaults(defineProps<CodeLineProps>(), {
   raw: () => ({}),
-  content: ''
 });
 
 // 获取实际内容
 const content = computed(() => {
-  const result = props.raw?.content || props.content || '';
+  const result = props.raw?.content ?? '';
   return result;
 });
 </script>

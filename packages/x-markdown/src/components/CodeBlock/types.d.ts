@@ -4,34 +4,48 @@
  */
 export interface CodeBlockProps {
   /**
-   * 要展示的代码字符串
-   * @default ''
+   * 原始数据对象，包含代码块的完整信息
    */
-  code?: string;
+  raw?: CodeBlockRaw;
+}
+
+/**
+ * 代码块原始数据类型
+ * 从 Markdown 解析后传入的原始信息
+ */
+export interface CodeBlockRaw {
+  /**
+   * 唯一标识符
+   * @example 'code-0'
+   */
+  key?: string;
 
   /**
-   * 代码语言，用于语法高亮
-   * 例如：'javascript', 'typescript', 'python', 'vue' 等
-   * @default ''
+   * 原始语言标识（带 language- 前缀）
+   * @example 'language-javascript'
    */
-  lang?: string;
+  languageOriginal?: string;
 
   /**
-   * 是否显示行号
+   * 代码语言
+   * @example 'javascript'
+   */
+  language?: string;
+
+  /**
+   * 是否是行内代码
    * @default false
    */
-  showLineNumbers?: boolean;
+  inline?: boolean;
 
   /**
-   * 需要高亮的行号数组
-   * 例如：[1, 3, 5] 表示高亮第 1、3、5 行
-   * @default []
+   * 代码内容
    */
-  highlightedLines?: number[];
+  content?: string;
 
   /**
-   * 自定义 CSS 类名
-   * @default ''
+   * CSS 类名数组
+   * @example ['language-javascript']
    */
-  className?: string;
+  class?: string[];
 }
