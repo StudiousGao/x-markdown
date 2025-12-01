@@ -1,8 +1,8 @@
 import type { PluggableList } from 'unified';
-import type { CustomAttrs, SanitizeOptions } from '../../core/types';
+import type { CustomAttrs, SanitizeOptions } from '../core/types';
 
 /**
- * MarkdownProvider 上下文类型
+ * MarkdownRenderer 上下文类型
  * 用于在组件树中传递 Markdown 相关配置
  */
 export interface MarkdownContext {
@@ -38,10 +38,4 @@ export interface MarkdownContext {
   sanitize?: boolean;
   // 清洗选项
   sanitizeOptions?: SanitizeOptions;
-  // 是否显示查看代码按钮
-  needViewCodeBtn?: boolean;
-  // 是否是安全模式预览html
-  secureViewCode?: boolean;
-  // 预览代码弹窗部分配置
-  viewCodeModalOptions?: any;
 }
