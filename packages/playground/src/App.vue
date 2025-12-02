@@ -8,11 +8,7 @@
       </div>
       <div class="header-actions">
         <!-- 流式演示控制 -->
-        <button
-          @click="startStreaming"
-          :disabled="isStreaming"
-          class="action-btn primary"
-        >
+        <button @click="startStreaming" :disabled="isStreaming" class="action-btn primary">
           {{ isStreaming ? '⏳ 流式中...' : '▶️ 流式演示' }}
         </button>
         <button @click="resetContent" class="action-btn">🔄 重置</button>
@@ -62,12 +58,7 @@
           </label>
           <label class="code-max-height-label">
             代码块最大高度
-            <input 
-              type="text" 
-              v-model="codeMaxHeight" 
-              placeholder="如: 300px"
-              class="code-max-height-input"
-            />
+            <input type="text" v-model="codeMaxHeight" placeholder="如: 300px" class="code-max-height-input" />
           </label>
         </div>
       </div>
@@ -94,11 +85,7 @@
           <span class="char-count">{{ markdown.length }} 字符</span>
         </div>
 
-        <textarea
-          v-model="markdown"
-          class="editor"
-          placeholder="在此输入 Markdown 内容..."
-        ></textarea>
+        <textarea v-model="markdown" class="editor" placeholder="在此输入 Markdown 内容..."></textarea>
       </div>
 
       <!-- 右侧：预览面板 -->
@@ -132,12 +119,7 @@
             </template>
             <!-- 自定义链接：添加外链图标 -->
             <template v-if="useCustomSlots" #a="{ node, children }">
-              <a
-                :href="node?.properties?.href"
-                target="_blank"
-                rel="noopener noreferrer"
-                class="custom-link"
-              >
+              <a :href="node?.properties?.href" target="_blank" rel="noopener noreferrer" class="custom-link">
                 <component :is="children" />
                 <span class="link-icon">↗</span>
               </a>
@@ -164,12 +146,12 @@ const isDark = ref(false)
 const enableLatex = ref(true)
 const allowHtml = ref(true)
 const enableBreaks = ref(true)
-const enableAnimate = ref(false)  // 是否启用动画效果
+const enableAnimate = ref(false) // 是否启用动画效果
 const useCustomSlots = ref(true)
 
 // 代码块配置选项
-const showCodeBlockHeader = ref(true)  // 是否显示代码块头部
-const codeMaxHeight = ref('')  // 代码块最大高度（如 '300px'）
+const showCodeBlockHeader = ref(true) // 是否显示代码块头部
+const codeMaxHeight = ref('') // 代码块最大高度（如 '300px'）
 
 // 流式演示状态
 const isStreaming = ref(false)
@@ -305,11 +287,11 @@ const streamProgress = computed(() => {
 // 代码块完整配置（包含主题、样式、功能等）
 const codeXProps = computed(() => ({
   // 主题配置
-  codeLightTheme: 'vitesse-light',       // 浅色主题
-  codeDarkTheme: 'vitesse-dark',         // 深色主题
+  codeLightTheme: 'vitesse-light', // 浅色主题
+  codeDarkTheme: 'vitesse-dark', // 深色主题
   // 功能配置
   showCodeBlockHeader: showCodeBlockHeader.value, // 是否显示代码块头部
-  codeMaxHeight: codeMaxHeight.value || undefined // 代码块最大高度
+  codeMaxHeight: codeMaxHeight.value || undefined, // 代码块最大高度
 }))
 
 // 自定义代码块插槽
@@ -332,34 +314,26 @@ const codeXSlots = {
       shell: '💻',
       bash: '💻',
       sql: '🗃️',
-      mermaid: '📊'
+      mermaid: '📊',
     }
     const icon = icons[language] || '📄'
     return h('span', { class: 'custom-lang' }, [
       h('span', { class: 'lang-icon' }, icon),
-      h('span', { class: 'lang-name' }, language.toUpperCase())
+      h('span', { class: 'lang-name' }, language.toUpperCase()),
     ])
   },
 
   // 自定义头部右侧：复制按钮
-  'header-right': ({
-    code,
-    copy,
-    copied
-  }: {
-    code: string
-    copy: (text: string) => void
-    copied: boolean
-  }) => {
+  'header-right': ({ code, copy, copied }: { code: string; copy: (text: string) => void; copied: boolean }) => {
     return h(
       'button',
       {
         class: ['custom-copy-btn', { copied }],
-        onClick: () => copy(code)
+        onClick: () => copy(code),
       },
-      copied ? '✅ 已复制' : '📋 复制'
+      copied ? '✅ 已复制' : '📋 复制',
     )
-  }
+  },
 }
 
 // ==================== 方法 ====================
@@ -380,10 +354,7 @@ const startStreaming = () => {
   streamTimer = setInterval(() => {
     if (streamIndex < fullContent.length) {
       // 每次添加 1-3 个字符
-      const charsToAdd = Math.min(
-        Math.floor(Math.random() * 3) + 1,
-        fullContent.length - streamIndex
-      )
+      const charsToAdd = Math.min(Math.floor(Math.random() * 3) + 1, fullContent.length - streamIndex)
       markdown.value += fullContent.slice(streamIndex, streamIndex + charsToAdd)
       streamIndex += charsToAdd
     } else {

@@ -23,13 +23,13 @@ import {MarkdownRenderer,MarkdownRendererAsync} from '@/components/Markdown';
 ```ts
 const customAttrs = {
   heading: (node, { level }) => ({
-    class: ['heading', `heading-${level}`]
+    class: ['heading', `heading-${level}`],
   }),
-  a: node => ({
+  a: (node) => ({
     target: '_blank',
-    rel: 'noopener noreferrer'
-  })
-};
+    rel: 'noopener noreferrer',
+  }),
+}
 ```
 
 ### 插槽
